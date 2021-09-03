@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Closer</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <input type="text" oninput="debounce(main, 1000)" id="query" />
+    
+    <div id="movies"></div>
+
+
+    <script>
+      //1. get the input 
+     //2.  search movie by name
+       
+
+      let movies_div = document.getElementById("movies");
+      
+      let timerId;
+
+     async function searchMovies(n){
+         let res = await fetch(`http://www.omdbapi.com/?s=${n}&apikey=17249d03`)
+
+         let data = await res.json();
+       
+         return data.Search;
+     }
+        function appendMovies(m){
+
+            movies_div.innerHTML = null;
+
+            m.forEach(({Title}) => {
+                let p = document.createElement("p");
+
+                p.innerHTML = Title;
+
+                movies_div.append(p);
+            });
+        }
+    
+
+    async  function main(){
+      let name = document.getElementById("query").value;
+
+        let movies =  await searchMovies(name);
+       if(movies === undefined){
+           return false;
+       }
+       appendMovies(movies);
+
+       console.log(movies);
+
+      }
+      
+
+      function debounce(func, deley){
+              let name = document.getElementById("query").value; 
+
+        if (name.length < 3) {
+              return false;
+          }
+           
+
+          if(timerId){
+              clearTimeout(timerId);
+          }
+          //ave- 1st setTimeofut creator
+          //aven- is there any prev req? timerid is there clear that timeout and replace with clear
+
+          timerId =   setTimeout( ()=>{
+            func();
+        }, deley);
+      }
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Star Wars</title>
+</head>
+<link rel="stylesheet" href="index.css">
+<body>
+   
+    <video autoplay muted loop id="myVideo">
+        <source src="2611250.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+
+       
+    </video>
+    <div id="main_div">
+        <img id="icon_logo" src="Untitled.jpg">
+        <input type="text" id="query" placeholder="Search characters"  oninput="debounce(main, 1000)" autocomplete="off">
+        <img id="search_btn" src="search.png">
+        <div id="Cractor_div">
+
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
